@@ -1,0 +1,36 @@
+{
+  "name": "can-stache-loader",
+  "version": "0.1.0",
+  "description": "CanJS Stache loader for WebPack",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postpublish": "git push origin master --tags"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/macku/can-stache-loader.git"
+  },
+  "keywords": [
+    "stache",
+    "can",
+    "canjs",
+    "loader",
+    "webpack",
+    "mustache"
+  ],
+  "dependencies": {
+    "can": "^2.3.31",
+    "can-stache": "^3.0.25",
+    "can-view-parser": "^3.3.0"
+  },
+  "author": {
+    "name": "Maciej Adamczak",
+    "url": "https://github.com/macku"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/macku/can-stache-loader/issues"
+  },
+  "homepage": "https://github.com/macku/can-stache-loader#readme"
+}
