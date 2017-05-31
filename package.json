@@ -1,6 +1,6 @@
 {
   "name": "can-stache-loader",
-  "version": "0.2.1",
+  "version": "1.0.0-beta",
   "description": "CanJS Stache loader for WebPack",
   "main": "index.js",
   "scripts": {
@@ -20,7 +20,6 @@
     "mustache"
   ],
   "dependencies": {
-    "can": "^2.3.31",
     "can-stache": "^3.0.25",
     "can-view-parser": "^3.3.0"
   },
