@@ -1,28 +1,29 @@
-var mustacheLineBreakRegExp = /(?:(?:^|(\r?)\n)(\s*)(\{\{([^\}]*)\}\}\}?)([^\S\n\r]*)($|\r?\n))|(\{\{([^\}]*)\}\}\}?)/g;
+// Taken from https://github.com/canjs/can-stache/blob/master/src/mustache_core.js
+
+const mustacheLineBreakRegExp = /(?:(?:^|(\r?)\n)(\s*)(\{\{([^\}]*)\}\}\}?)([^\S\n\r]*)($|\r?\n))|(\{\{([^\}]*)\}\}\}?)/g;
+
 /**
  * @hide
  * Returns the mustache mode split from the rest of the expression.
  * @param {can.stache.Expression} expression
  * @param {Object} state The state of HTML where the expression was found.
  */
-function splitModeFromExpression (expression, state){
+function splitModeFromExpression(expression, state) {
   expression = expression.trim();
-  var mode = expression.charAt(0);
+  let mode = expression.charAt(0);
 
-  if( "#/{&^>!".indexOf(mode) >= 0 ) {
-    expression =  expression.substr(1).trim();
+  if ("#/{&^>!".indexOf(mode) >= 0) {
+    expression = expression.substr(1).trim();
   } else {
     mode = null;
   }
   // Triple braces do nothing within a tag.
-  if(mode === "{" && state.node) {
+  if (mode === "{" && state.node) {
     mode = null;
   }
-  return {
-    mode: mode,
-    expression: expression
-  };
-};
+
+  return { mode, expression };
+}
 
 /**
  * @hide
@@ -31,11 +32,16 @@ function splitModeFromExpression (expression, state){
  * @return {String}
  */
 module.exports = function cleanLineEndings(template) {
-  return template.replace(mustacheLineBreakRegExp, function (whole, returnBefore, spaceBefore, special, expression, spaceAfter, returnAfter, spaceLessSpecial, spaceLessExpression, matchIndex) {
+  return template.replace(mustacheLineBreakRegExp, function(
+    whole, returnBefore, spaceBefore, special, expression, spaceAfter, returnAfter, spaceLessSpecial,
+    spaceLessExpression, matchIndex
+  ) {
     spaceAfter = spaceAfter || '';
     returnBefore = returnBefore || '';
     spaceBefore = spaceBefore || '';
-    var modeAndExpression = splitModeFromExpression(expression || spaceLessExpression, {});
+
+    const modeAndExpression = splitModeFromExpression(expression || spaceLessExpression, {});
+
     if (spaceLessSpecial || '>{'.indexOf(modeAndExpression.mode) >= 0) {
       return whole;
     } else if ('^#!/'.indexOf(modeAndExpression.mode) >= 0) {
@@ -44,4 +50,4 @@ module.exports = function cleanLineEndings(template) {
       return spaceBefore + special + spaceAfter + (spaceBefore.length || matchIndex !== 0 ? returnBefore + '\n' : '');
     }
   });
-}
+};

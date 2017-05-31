@@ -27,11 +27,10 @@ module.exports = function (scope, options, nodeList) {
     
     return renderer(scope, options.add(moduleOptions), nodeList);
 };`;
-}
+};
 
 module.exports = function canStacheLoader(source) {
     const src = JSON.stringify(source);
-
     const intermediateAndImports = getIntermediateAndImports(source);
 
     return getTemplate(src, intermediateAndImports.imports);
