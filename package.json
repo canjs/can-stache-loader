@@ -1,6 +1,6 @@
 {
   "name": "can-stache-loader",
-  "version": "0.2.0",
+  "version": "1.0.0-pre",
   "description": "CanJS Stache loader for WebPack",
   "main": "index.js",
   "scripts": {
