@@ -1,38 +1,65 @@
-const getIntermediateAndImports = require('./intermediate_and_imports');
-// const getIntermediateAndImports = require('can-stache/src/intermediate_and_imports');
-// const getIntermediateAndImports = require('can/dist/cjs/view/stache/intermediate_and_imports');
+var loaderUtils = require("loader-utils");
+var parse = require("can-stache-ast").parse;
 
+function makeRenderer(imports, intermediate, filename){
+	intermediate = JSON.stringify(intermediate);
+	filename     = JSON.stringify( filename );
+	
+	var requires =  imports.map(function (imported) {
+		return 'require(\'' + imported + '\');';
+	}).join('\n');
 
-const getTemplate = (source, imports) => {
-  const requires = imports.map(i => `require('${i}');`).join('\n');
+	return `
+		var stache = require('can-stache');
+		var mustacheCore = require( "can-stache/src/mustache_core" );
+		var parse = require("can-stache-ast").parse;
+		//common deps
+		require('can-view-import');
+		require('can-stache-bindings');
+	
+		${requires}
+		
+		${
+			filename ? 
+			`var renderer = stache(${filename}, ${intermediate})` : 
+			`var renderer = stache(${intermediate}) ;`
+		}
 
-  return `var stache = require('can/dist/cjs/view/stache/stache');
-var mustacheCore = require('can/dist/cjs/view/stache/mustache_core');
-var getIntermediateAndImports = require('can/dist/cjs/view/stache/intermediate_and_imports');
-
-${requires}
-
-var source = ${source};
-var intermediateAndImports = getIntermediateAndImports(source);
-
-var intermediate = intermediateAndImports.intermediate;
-var renderer = stache(intermediate);
-
-module.exports = function (scope, options, nodeList) {
-    var moduleOptions = { module: module };
-    
-    if (!(options instanceof mustacheCore.Options)) {
-        options = new mustacheCore.Options(options || {});
-    }
-    
-    return renderer(scope, options.add(moduleOptions), nodeList);
-};`;
+        module.exports = function(scope, options, nodeList) {
+			var moduleOptions = Object.assign({}, options);
+			
+            if(moduleOptions.helpers) {
+                moduleOptions.helpers = Object.assign({ module: module }, moduleOptions.helpers);
+            } else {
+                moduleOptions.module = module;
+			}
+            return renderer( scope, moduleOptions, nodeList );
+        };
+    `;
 }
 
-module.exports = function canStacheLoader(source) {
-    const src = JSON.stringify(source);
+module.exports = function(source, map) {
+    var filename = loaderUtils.getRemainingRequest(this);
+	var ast = parse(filename, source);
+	var callback = this.async();
 
-    const intermediateAndImports = getIntermediateAndImports(source);
-
-    return getTemplate(src, intermediateAndImports.imports);
+	Promise.all([
+		ast.dynamicImports
+	]).then(function(results) {
+		var imports = results[0];
+		ast.imports.unshift.apply(
+			ast.imports, imports
+		);
+		var renderer = makeRenderer(
+			ast.imports,
+			ast.intermediate,
+			filename
+		);
+		
+		callback(
+			null,
+			renderer,
+			map
+		);
+	});
 };

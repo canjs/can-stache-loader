@@ -1,0 +1,18 @@
+<div>
+	{{message}}
+</div>
+
+<can-dynamic-import from="./imported" />
+
+{{<inlinePartial}}
+    <div>{{inlineMessage}}</div>
+{{/inlinePartial}}
+
+{{> partial.stache}}
+
+{{>inlinePartial}}
+
+<div>
+	<x-comp message:raw="Hello stache loader"/>
+</div>
+
