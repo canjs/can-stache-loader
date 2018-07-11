@@ -1,11 +1,11 @@
 var loaderUtils = require("loader-utils");
 var parse = require("can-stache-ast").parse;
 
-function makeRenderer(imports, intermediate, filename){
+function makeRenderer(imports, intermediate, filename) {
 	intermediate = JSON.stringify(intermediate);
-	filename     = JSON.stringify( filename );
-	
-	var requires =  imports.map(function (imported) {
+	filename = JSON.stringify(filename);
+
+	var requires = imports.map(function(imported) {
 		return 'require(\'' + imported + '\');';
 	}).join('\n');
 
@@ -40,8 +40,8 @@ function makeRenderer(imports, intermediate, filename){
 
 module.exports = function(source, map) {
     var filename = loaderUtils.getRemainingRequest(this);
-	var ast = parse(filename, source);
-	var callback = this.async();
+    var ast = parse(filename, source);
+    var callback = this.async();
 
 	Promise.all([
 		ast.dynamicImports
