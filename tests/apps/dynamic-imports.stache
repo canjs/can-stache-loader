@@ -1,0 +1,3 @@
+<can-dynamic-import from="./imports/imported" />
+
+<imported-com></imported-com>

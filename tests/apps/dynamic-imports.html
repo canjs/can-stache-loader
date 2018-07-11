@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<imports-app></imports-app>
+	<script type="text/javascript" src="bundle.js"></script>
+	<script type="text/javascript">
+		(function(){
+			var QUnit = window.parent.QUnit;
+			var removeMyself = window.parent.removeMyself;
+			var importedComponent = document.querySelector("imported-com");
+			var msg = document.querySelector("#imported-com-content");
+			if(QUnit) {
+				QUnit.ok(!!importedComponent, 'It imports module');
+				QUnit.ok(!!msg, "It rendered");
+				QUnit.equal(msg.innerHTML, "I'm in the imported component");
+				removeMyself();
+			} else {
+				console.log("Got element", msg);
+			}
+		})();
+	</script>
+</body>
+</html>

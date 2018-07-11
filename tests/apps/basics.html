@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<my-app></my-app>
+	<script type="text/javascript" src="bundle.js"></script>
+	<script type="text/javascript">
+		(function(){
+			var QUnit = window.parent.QUnit;
+			var removeMyself = window.parent.removeMyself;
+			var msg = document.querySelector("#msg");
+			if(QUnit) {
+				QUnit.ok(!!msg, "It rendered");
+				QUnit.equal(msg.innerHTML, 'Greetings from stache loader');
+				removeMyself();
+			} else {
+				console.log("Got element", msg);
+			}
+		})();
+	</script>
+</body>
+</html>

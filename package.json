@@ -4,7 +4,9 @@
   "description": "CanJS Stache loader for WebPack",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+  	"testee": "testee tests/test.html --browsers firefox",
+  	"test": "npm run build-test && npm run testee",
+    "build-test": "webpack --config webpack.config.test.js",
     "postpublish": "git push origin master --tags"
   },
   "repository": {
@@ -29,6 +31,9 @@
     "can-stache-bindings": "^4.0.0",
     "can-view-import": "^4.2.0",
     "qunit": "^2.6.1",
+    "steal": "^1.12.4",
+    "steal-qunit": "^1.0.2",
+    "testee": "^0.8.1",
     "webpack": "^4.15.1",
     "webpack-cli": "^3.0.8"
   },
