@@ -2,6 +2,13 @@
 [![dependencies](https://img.shields.io/david/macku/can-stache-loader.svg)](https://david-dm.org/macku/can-stache-loader)
 [![dev dependencies](https://img.shields.io/david/dev/macku/can-stache-loader.svg)](https://david-dm.org/macku/can-stache-loader?type=dev)
 
+<div align="center">
+  <a href="https://github.com/webpack/webpack">
+    <img width="200" height="200"
+      src="https://webpack.js.org/assets/icon-square-big.svg">
+  </a>
+</div>
+
 # CanJS Stache template loader for webpack
 
 Compiles [CanJS Stache](https://github.com/canjs/can-stache) templates with [can-view-parser](https://github.com/canjs/can-view-parser) and allows to load them with [webpack](https://webpack.github.io/)
@@ -28,6 +35,8 @@ yarn add can-stache-loader
 
 ### Configure webpack 2+
 
+**webpack.config.js**
+
 ```js
 {
   module: {
@@ -46,7 +55,8 @@ yarn add can-stache-loader
 ### Import stache templates in your [CanJS](https://canjs.com/) project
 
 ```js
-const tpl = require('./template.stache');
+import tpl from './template.stache';
+
 const html = tpl({
  foo: 'bar'
 });
