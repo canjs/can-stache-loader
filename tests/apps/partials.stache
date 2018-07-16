@@ -1,0 +1,2 @@
+Partial
+<div id="partial">{{> aPartial.stache}}</div>

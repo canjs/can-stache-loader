@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<for-partials></for-partials>
+	<script type="text/javascript" src="bundle.js"></script>
+	<script type="text/javascript">
+		(function(){
+			var QUnit = window.parent.QUnit;
+			var removeMyself = window.parent.removeMyself;
+			var partial = document.querySelector("#partial");
+			var theParial = document.querySelector("#thePartial");
+			if(QUnit) {
+				QUnit.ok(!!partial, "It rendered");
+				QUnit.equal(theParial.innerHTML, "I'm partial");
+				removeMyself();
+			} else {
+				console.log("Got element", msg);
+			}
+		})();
+	</script>
+</body>
+</html>
