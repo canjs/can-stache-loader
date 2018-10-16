@@ -1,11 +1,11 @@
 {
   "name": "can-stache-loader",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "CanJS Stache loader for WebPack",
   "main": "index.js",
   "scripts": {
-  	"testee": "testee tests/test.html --browsers firefox",
-  	"test": "npm run build-test && npm run testee",
+    "testee": "testee tests/test.html --browsers firefox",
+    "test": "npm run build-test && npm run testee",
     "build-test": "webpack --config webpack.config.test.js",
     "postpublish": "git push origin master --tags"
   },
