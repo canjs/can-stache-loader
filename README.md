@@ -62,5 +62,9 @@ const html = tpl({
 });
 ```
 
+## CanJS Compatibility
+
+This library works fine with [CanJS](https://canjs.com/) version **4.0.0+** and [webpack](https://webpack.github.io/) **2.0.0+**.
+
 ## License
 [MIT](https://opensource.org/licenses/MIT)
