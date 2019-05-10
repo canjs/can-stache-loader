@@ -32,7 +32,7 @@
     "can-view-import": "^4.2.0",
     "qunit": "^2.6.1",
     "steal": "^1.12.4",
-    "steal-qunit": "^1.0.2",
+    "steal-qunit": "^2.0.0",
     "testee": "^0.8.1",
     "webpack": "^4.15.1",
     "webpack-cli": "^3.0.8"

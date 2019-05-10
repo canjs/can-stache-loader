@@ -5,7 +5,7 @@ var makeIframe = function(src){
 	window.removeMyself = function(){
 		delete window.removeMyself;
 		document.body.removeChild(iframe);
-		QUnit.start();
+		done();
 	};
 	document.body.appendChild(iframe);
 	iframe.src = src;
