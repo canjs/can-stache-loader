@@ -1,1 +1,1 @@
-<div id="msg">{{message}}</div>
+<div id="msg">{{this.message}}</div>

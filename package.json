@@ -22,18 +22,14 @@
     "mustache"
   ],
   "dependencies": {
+    "can": "^6.4.0",
     "loader-utils": "^1.1.0"
   },
   "devDependencies": {
-    "can-component": "^4.2.2",
-    "can-stache": "^4.0.0",
-    "can-stache-ast": "^1.0.0",
-    "can-stache-bindings": "^4.0.0",
-    "can-view-import": "^4.2.0",
     "qunit": "^2.6.1",
-    "steal": "^1.12.4",
-    "steal-qunit": "^1.0.2",
-    "testee": "^0.8.1",
+    "steal": "^2.0.0",
+    "steal-qunit": "^2.0.0",
+    "testee": "^0.9",
     "webpack": "^4.15.1",
     "webpack-cli": "^3.0.8"
   },
@@ -43,7 +39,7 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/macku/can-stache-loader/issues"
+    "url": "https://github.com/canjs/can-stache-loader/issues"
   },
-  "homepage": "https://github.com/macku/can-stache-loader#readme"
+  "homepage": "https://github.com/canjs/can-stache-loader#readme"
 }

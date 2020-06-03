@@ -1,13 +1,19 @@
-var Component = require('can-component');
-var tpl = require('./tpl.stache');
+import {StacheElement} from 'can';
+import tpl from './tpl.stache';
 
-Component.extend({
-	tag: 'x-comp',
-	view: tpl,
-	ViewModel: {
-		message: {
-			type:'string',
-			default: 'Hello Imported'
-		}
+export default class XComp extends StacheElement {
+	static get view() {
+		return tpl;
 	}
-});
+
+	static get props() {
+		return {
+			message: {
+				type: String,
+				default: 'Hello Imported'
+			}
+		};
+	}
+}
+
+customElements.define('x-comp', XComp);

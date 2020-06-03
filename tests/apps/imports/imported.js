@@ -1,7 +1,8 @@
 var renderer = require('./imported.stache');
-var Component = require('can-component');
+var {StacheElement} = require('can');
 
-Component.extend({
-	tag: 'imported-com',
-	view: renderer
-});
+class Imported extends StacheElement {
+	static get view() { return renderer; }
+};
+
+customElements.define('imported-com', Imported);

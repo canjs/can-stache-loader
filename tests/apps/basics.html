@@ -8,12 +8,12 @@
 	<script type="text/javascript" src="bundle.js"></script>
 	<script type="text/javascript">
 		(function(){
-			var QUnit = window.parent.QUnit;
+			var assert = window.parent.assert;
 			var removeMyself = window.parent.removeMyself;
 			var msg = document.querySelector("#msg");
-			if(QUnit) {
-				QUnit.ok(!!msg, "It rendered");
-				QUnit.equal(msg.innerHTML, 'Greetings from stache loader');
+			if(assert) {
+				assert.ok(!!msg, "It rendered");
+				assert.equal(msg.innerHTML, 'Greetings from stache loader', "Correct");
 				removeMyself();
 			} else {
 				console.log("Got element", msg);

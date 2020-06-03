@@ -1,1 +1,5 @@
-{{message}}
+{{ this.message }}
+
+<p>
+	<input value:bind="this.message">
+</p>

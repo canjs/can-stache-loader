@@ -1,11 +1,11 @@
 <div>
-	{{message}}
+	{{this.message}}
 </div>
 
 <can-dynamic-import from="./imported" />
 
 {{<inlinePartial}}
-    <div>{{inlineMessage}}</div>
+    <div>{{this.inlineMessage}}</div>
 {{/inlinePartial}}
 
 {{> partial.stache}}
