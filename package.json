@@ -22,10 +22,11 @@
     "mustache"
   ],
   "dependencies": {
-    "can": "^6.4.0",
+    "can-stache-ast": "^1.1.0",
     "loader-utils": "^1.1.0"
   },
   "devDependencies": {
+    "can": "^6.4.0",
     "qunit": "^2.6.1",
     "steal": "^2.0.0",
     "steal-qunit": "^2.0.0",
