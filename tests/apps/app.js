@@ -34,7 +34,7 @@ customElements.define('imports-app', Imports);
 // dynamic import test
 class DynamicImports extends StacheElement {
 	static get view() {
-		return dynamicImportsRenderer
+		return dynamicImportsRenderer;
 	}
 };
 
